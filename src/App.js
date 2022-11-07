@@ -1,9 +1,9 @@
-import { Button } from 'flowbite-react';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routes/BasicRoutes';
 
 function App() {
-  console.log(process.env.REACT_APP_testName)
   return (
-    <Button>Click</Button>
+    <RouterProvider router={router} />
   );
 }
 
