@@ -4,7 +4,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { TailorContext } from '../Contexts/Contexts';
 
 const SignUp = () => {
-    const { isValidImage } = useContext(TailorContext);
+    const { isValidImage, createUser, setNameAndPhoto } = useContext(TailorContext);
     const { state } = useLocation();
     const [loading, setLoading] = useState(false);
     const [imgErr, setImgErr] = useState(false);
@@ -24,9 +24,17 @@ const SignUp = () => {
 
         if (!imgErr && password === confirm) {
             setLoading(true);
-            setTimeout(() => {
-                setLoading(false)
-            }, 2000);
+            createUser(email, password)
+                .then(result => {
+                    setNameAndPhoto(name, photoURL)
+                        .then(() => console.log(result.user))
+                        .catch(err => console.error(err))
+                        .finally(() => setLoading(false))
+                })
+                .catch(err => {
+                    console.error(err);
+                    setLoading(false);
+                })
         }
     }
 
