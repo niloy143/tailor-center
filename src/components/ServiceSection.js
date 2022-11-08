@@ -3,8 +3,9 @@ import ServiceCard from './ServiceCard';
 import BodySpinner from './BodySpinner';
 import { Button } from 'flowbite-react';
 import { useNavigate } from 'react-router-dom';
+import { FaArrowRight } from 'react-icons/fa';
 
-const Services = () => {
+const ServiceSection = () => {
     const [loading, setLoading] = useState(true);
     const [services, setServices] = useState([]);
     const navigate = useNavigate();
@@ -28,10 +29,10 @@ const Services = () => {
                     }
                 </div>
                 <div className='max-w-5xl mx-auto my-5 flex justify-end'>
-                    <Button gradientMonochrome="teal" size="lg" onClick={() => navigate('/services')}>Show All Services</Button>
+                    <Button gradientMonochrome="teal" size="lg" onClick={() => navigate('/services')}>Show All Services <FaArrowRight className='ml-2 text-lg' /> </Button>
                 </div>
             </div>
     );
 };
 
-export default Services;
+export default ServiceSection;

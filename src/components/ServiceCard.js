@@ -11,7 +11,7 @@ const ServiceCard = ({ service }) => {
 
     const loadDynamicURL = id => {
         setRouteLoader(true);
-        navigate(`/services/${id}`);
+        navigate(`/service/${id}`);
     }
 
     return (
@@ -27,7 +27,7 @@ const ServiceCard = ({ service }) => {
                         <p className='ml-1 text-lg text-gray-700'>{rating || 'No Ratings Yet'}</p>
                     </Rating>
                 </div>
-                <Button gradientMonochrome="info" className='my-3 mx-auto sm:mx-0' onClick={() => loadDynamicURL(`${_id}`)} disabled={routeLoader}>See Details <span className='ml-1'>{routeLoader ? <Spinner size="sm" /> : <FaArrowRight />}</span></Button>
+                <Button className="mt-5" gradientMonochrome="info" onClick={() => loadDynamicURL(`${_id}`)} disabled={routeLoader}>See Details <span className='ml-1'>{routeLoader ? <Spinner size="sm" /> : <FaArrowRight />}</span></Button>
             </div>
         </div>
     );
