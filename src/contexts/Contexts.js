@@ -8,6 +8,7 @@ const auth = getAuth(app);
 const Contexts = ({ children }) => {
     const [user, setUser] = useState(null);
     const [userLoading, setUserLoading] = useState(true);
+    const [routeLoader, setRouteLoader] = useState(false);
 
     // get the user status when loading the site
     useEffect(() => {
@@ -51,6 +52,8 @@ const Contexts = ({ children }) => {
         signIn,
         googleSignIn,
         setUserLoading,
+        routeLoader,
+        setRouteLoader,
         userLoading,
         user
     }
