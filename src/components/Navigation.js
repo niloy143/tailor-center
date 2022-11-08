@@ -7,7 +7,7 @@ const Navigation = () => {
     const navigate = useNavigate();
     const { user, userLoading, logOut } = useContext(TailorContext);
     return (
-        <div>
+        <div className='shadow-md mb-3 sticky top-0 z-10'>
             <Navbar>
                 <Navbar.Brand>
                     <div className='flex items-center gap-2 cursor-pointer' onClick={() => navigate('/')}>
