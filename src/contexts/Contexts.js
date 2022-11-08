@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import app from '../firebase/firebase-init';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 
 export const TailorContext = createContext({});
 const auth = getAuth(app);
@@ -19,6 +19,9 @@ const Contexts = ({ children }) => {
         return () => unsubscribe();
     }, [])
 
+    // third-party authentication provider
+    const googleProvider = new GoogleAuthProvider();
+
     // check the image URL whether it's valid or not when a user sign up
     const isValidImage = url => {
         const img = new Image();
@@ -33,6 +36,7 @@ const Contexts = ({ children }) => {
     const logOut = () => signOut(auth);
     const createUser = (email, password) => createUserWithEmailAndPassword(auth, email, password);
     const signIn = (email, password) => signInWithEmailAndPassword(auth, email, password);
+    const googleSignIn = () => signInWithPopup(auth, googleProvider);
     const setNameAndPhoto = (name, photo) => updateProfile(auth.currentUser, {
         displayName: name,
         photoURL: photo
@@ -45,8 +49,10 @@ const Contexts = ({ children }) => {
         setNameAndPhoto,
         logOut,
         signIn,
-        user,
-        userLoading
+        googleSignIn,
+        setUserLoading,
+        userLoading,
+        user
     }
     return (
         <TailorContext.Provider value={value}>

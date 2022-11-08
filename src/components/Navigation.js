@@ -28,7 +28,7 @@ const Navigation = () => {
                             >
                                 <Dropdown.Item onClick={() => logOut()}>Sign Out</Dropdown.Item>
                             </Dropdown> :
-                                <NavLink to="/signin" className={({ isActive }) => `${isActive && 'text-blue-600'} hover:text-blue-600`}>Sign-In</NavLink>
+                                <NavLink to="/signin" className={({ isActive }) => `bg-orange-500 text-white ${isActive ? 'bg-orange-600 italic' : 'hover:bg-orange-600'} px-4 py-2 rounded`}>Sign-In</NavLink>
                         }
                     </div>
                 </Navbar.Collapse>
