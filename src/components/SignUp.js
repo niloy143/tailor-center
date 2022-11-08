@@ -28,14 +28,28 @@ const SignUp = () => {
             createUser(email, password)
                 .then(result => {
                     setNameAndPhoto(name, photoURL)
-                        .then(() => console.log(result.user))
+                        .then(() => { })
                         .catch(err => console.error(err))
                         .finally(() => {
-
+                            const { displayName, email, uid } = result.user;
+                            const user = { displayName, email, uid }
+                            fetch(`http://localhost:1234/jwt`, {
+                                method: 'POST',
+                                headers: {
+                                    'content-type': 'application/json'
+                                },
+                                body: JSON.stringify(user)
+                            })
+                                .then(res => res.json())
+                                .then(data => localStorage.setItem('tailor-center-user-token', data.token))
+                                .catch(err => console.error(err))
+                                .finally(() => setLoading(false))
                         })
                 })
                 .catch(err => {
-                    console.error(err);
+                    console.error(err.code);
+                    setEmailErr(err.code === 'auth/invalid-email' || err.code === 'auth/email-already-in-use');
+                    (err.code === 'auth/weak-password') && setPassErr(true);
                     setLoading(false);
                 })
         }

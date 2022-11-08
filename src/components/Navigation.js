@@ -1,4 +1,4 @@
-import { Dropdown, Navbar, Spinner } from 'flowbite-react';
+import { Avatar, Dropdown, Navbar, Spinner } from 'flowbite-react';
 import React, { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { TailorContext } from '../Contexts/Contexts';
@@ -22,7 +22,7 @@ const Navigation = () => {
                         <NavLink to="/blogs" className={({ isActive }) => `${isActive && 'text-blue-600'} hover:text-blue-600`}>Blog</NavLink>
                         {
                             userLoading ? <Spinner /> : user ? <Dropdown
-                                label={<img className='w-12 h-12 rounded-full' src={user.photoURL} alt='' />}
+                                label={<Avatar img={user.photoURL} rounded />}
                                 inline
                                 arrowIcon={false}
                             >
