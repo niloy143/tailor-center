@@ -7,10 +7,17 @@ const auth = getAuth(app);
 
 const Contexts = ({ children }) => {
 
-    console.log(auth)
+    const isValidImage = url => {
+        const img = new Image();
+        img.src = url;
+        return new Promise((resolve) => {
+            img.onerror = () => resolve(false);
+            img.onload = () => resolve(true);
+        });
+    }
 
     const value = {
-
+        isValidImage
     }
     return (
         <TailorContext.Provider value={value}>

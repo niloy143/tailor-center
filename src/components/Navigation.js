@@ -18,7 +18,7 @@ const Navigation = () => {
                     <div className='flex flex-col sm:flex-row items-center gap-5 text-lg'>
                         <NavLink to="/services" className={({ isActive }) => `${isActive && 'text-blue-600'} hover:text-blue-600`}>Services</NavLink>
                         <NavLink to="/blogs" className={({ isActive }) => `${isActive && 'text-blue-600'} hover:text-blue-600`}>Blog</NavLink>
-                        <NavLink to="/login" className={({ isActive }) => `${isActive && 'text-blue-600'} hover:text-blue-600`}>Login</NavLink>
+                        <NavLink to="/signin" className={({ isActive }) => `${isActive && 'text-blue-600'} hover:text-blue-600`}>Sign-In</NavLink>
                     </div>
                 </Navbar.Collapse>
             </Navbar>
