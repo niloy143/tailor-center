@@ -4,10 +4,11 @@ import { FiMoreVertical } from 'react-icons/fi';
 import { TailorContext } from '../Contexts/Contexts';
 import { AiFillLike } from 'react-icons/ai';
 
-const ReviewBox = ({ review }) => {
+const ReviewBox = ({ review, deleteReview }) => {
     const { user, mlsToDate } = useContext(TailorContext);
     const [fullText, setFullText] = useState(false);
-    const { reviewTitle, reviewText, author, rating, date } = review;
+    const { _id, reviewTitle, reviewText, author, rating, date } = review;
+
     return (
         <div>
             <div className='rounded-xl p-5 bg-slate-200'>
@@ -42,7 +43,7 @@ const ReviewBox = ({ review }) => {
                             arrowIcon={false}
                         >
                             <Dropdown.Item>Edit</Dropdown.Item>
-                            <Dropdown.Item>Delete</Dropdown.Item>
+                            <Dropdown.Item onClick={() => deleteReview(_id)}>Delete</Dropdown.Item>
                         </Dropdown> : <div>
                             <AiFillLike className='text-xl mr-2 active:scale-125 active:text-blue-600 transition cursor-pointer' />
                         </div>

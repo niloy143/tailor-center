@@ -5,6 +5,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import ReviewBox from './ReviewBox';
 import { TailorContext } from '../Contexts/Contexts';
 import { NavLink, useLocation } from 'react-router-dom';
+import BodySpinner from './BodySpinner';
 
 const ServiceReviews = ({ serviceId }) => {
     const { user, userLoading } = useContext(TailorContext);
@@ -14,6 +15,7 @@ const ServiceReviews = ({ serviceId }) => {
     const [submitted, setSubmitted] = useState(false);
     const [submitErr, setSubmitErr] = useState(false);
     const [reviews, setReviews] = useState([]);
+    const [reviewsLoading, setReviewsLoading] = useState(true);
 
     useEffect(() => {
         fetch(`http://localhost:1234/reviews/${serviceId}`)
@@ -21,6 +23,7 @@ const ServiceReviews = ({ serviceId }) => {
             .then(data => {
                 const sortedReviews = data.sort((a, b) => b.date - a.date);
                 setReviews(sortedReviews);
+                setReviewsLoading(false);
             })
     }, [serviceId])
 
@@ -106,6 +109,39 @@ const ServiceReviews = ({ serviceId }) => {
         }
     }
 
+    // handle deleting a review
+    const deleteReview = id => {
+        fetch(`http://localhost:1234/review/delete?id=${id}&userId=${user.uid}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                authtoken: `Bearer ${localStorage.getItem('tailor-center-user-token')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount) {
+                    const updatedReviews = [...reviews].filter(review => review._id !== id);
+                    setReviews(updatedReviews);
+                    let totalRating = 0;
+                    for (const review of updatedReviews) {
+                        totalRating += review.rating;
+                    }
+                    const updateRating = { averageRating: parseFloat((totalRating / updatedReviews.length).toFixed(1)) };
+                    fetch(`http://localhost:1234/service/modify?serviceId=${serviceId}&userId=${user.uid}`, {
+                        method: 'PUT',
+                        headers: {
+                            'content-type': 'application/json',
+                            authtoken: `Bearer ${localStorage.getItem('tailor-center-user-token')}`
+                        },
+                        body: JSON.stringify(updateRating)
+                    })
+                        .then(res => res.json())
+                        .then(data => { })
+                }
+            })
+    }
+
     return (
         <div className='my-12'>
             <h2 className='text-4xl font-semibold text-center mb-8'>What clients say about this service</h2>
@@ -159,7 +195,10 @@ const ServiceReviews = ({ serviceId }) => {
             </div >
             <div className='flex flex-col gap-5'>
                 {
-                    reviews.map(review => <ReviewBox review={review} key={review._id} />)
+                    reviewsLoading ? <BodySpinner /> : !(reviews.length) ? <div>
+                        <h2 className='text-2xl text-gray-500 font-semibold text-center my-5'>No Reviews Yet!</h2>
+                    </div> :
+                        reviews.map(review => <ReviewBox deleteReview={deleteReview} review={review} key={review._id} />)
                 }
             </div>
         </div >
