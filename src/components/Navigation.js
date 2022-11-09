@@ -18,6 +18,12 @@ const Navigation = () => {
                 <Navbar.Toggle />
                 <Navbar.Collapse>
                     <div className='flex flex-col sm:flex-row items-center gap-5 text-lg'>
+                        {
+                            userLoading ? <Spinner /> : user && <>
+                                <NavLink to="/my-reviews" className={({ isActive }) => `${isActive && 'text-blue-600'} hover:text-blue-600`}>My Reviews</NavLink>
+                                <NavLink to="/add-service" className={({ isActive }) => `${isActive && 'text-blue-600'} hover:text-blue-600`}>Add Service</NavLink>
+                            </>
+                        }
                         <NavLink to="/services" className={({ isActive }) => `${isActive && 'text-blue-600'} hover:text-blue-600`}>Services</NavLink>
                         <NavLink to="/blogs" className={({ isActive }) => `${isActive && 'text-blue-600'} hover:text-blue-600`}>Blog</NavLink>
                         {

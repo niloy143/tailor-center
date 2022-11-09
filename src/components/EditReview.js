@@ -11,7 +11,7 @@ const EditReview = () => {
     const { state } = useLocation();
     const navigate = useNavigate();
     const { user } = useContext(TailorContext);
-    const { _id, reviewTitle, reviewText, rating, author, serviceId, date } = useLoaderData();
+    const { _id, reviewTitle, reviewText, rating, author, serviceId, date, reviewerId } = useLoaderData();
 
     const titleLimitation = e => {
         const text = e.target.value;
@@ -28,7 +28,7 @@ const EditReview = () => {
         const rating = parseInt(e.target.rating.value);
         const lastUpdate = Date.now();
 
-        const review = { reviewTitle, reviewText, author, rating, date, serviceId, lastUpdate };
+        const review = { reviewTitle, reviewText, author, rating, date, serviceId, lastUpdate, reviewerId };
 
         fetch(`http://localhost:1234/review/update?id=${_id}&userId=${user.uid}`, {
             method: 'PUT',

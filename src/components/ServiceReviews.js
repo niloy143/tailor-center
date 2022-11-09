@@ -39,6 +39,7 @@ const ServiceReviews = ({ serviceId }) => {
         const reviewTitle = e.target.reviewTitle.value;
         const reviewText = e.target.reviewText.value;
         const rating = parseInt(e.target.rating.value);
+        const reviewerId = user.uid;
         const author = {
             uid: user.uid,
             name: user.displayName,
@@ -46,7 +47,7 @@ const ServiceReviews = ({ serviceId }) => {
         }
         const date = Date.now();
 
-        const review = { reviewTitle, reviewText, author, rating, date, serviceId };
+        const review = { reviewTitle, reviewText, author, rating, date, serviceId, reviewerId };
 
         fetch(`http://localhost:1234/add-review?userId=${user.uid}`, {
             method: 'POST',
