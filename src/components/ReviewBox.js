@@ -3,11 +3,13 @@ import { Avatar, Dropdown, Rating } from 'flowbite-react';
 import { FiMoreVertical } from 'react-icons/fi';
 import { TailorContext } from '../Contexts/Contexts';
 import { AiFillLike } from 'react-icons/ai';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const ReviewBox = ({ review, deleteReview }) => {
     const { user, mlsToDate } = useContext(TailorContext);
     const [fullText, setFullText] = useState(false);
     const { _id, reviewTitle, reviewText, author, rating, date } = review;
+    const { pathname } = useLocation();
 
     return (
         <div>
@@ -42,7 +44,7 @@ const ReviewBox = ({ review, deleteReview }) => {
                             inline
                             arrowIcon={false}
                         >
-                            <Dropdown.Item>Edit</Dropdown.Item>
+                            <Dropdown.Item><NavLink to={`/review/edit/${_id}`} state={pathname}>Edit</NavLink></Dropdown.Item>
                             <Dropdown.Item onClick={() => deleteReview(_id)}>Delete</Dropdown.Item>
                         </Dropdown> : <div>
                             <AiFillLike className='text-xl mr-2 active:scale-125 active:text-blue-600 transition cursor-pointer' />
