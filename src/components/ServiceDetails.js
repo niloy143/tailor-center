@@ -4,6 +4,7 @@ import { useLoaderData } from 'react-router-dom';
 import { TailorContext } from '../Contexts/Contexts';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
+import ServiceReviews from './ServiceReviews';
 
 const ServiceDetails = () => {
     const { setRouteLoader } = useContext(TailorContext);
@@ -15,12 +16,12 @@ const ServiceDetails = () => {
         <div className='max-w-7xl mx-3 sm:mx-5 lg:mx-12 xl:mx-auto my-12'>
             <h2 className='text-3xl sm:text-5xl text-center font-semibold my-16'>{title}</h2>
 
+            {/* ==== Service Details ===== */}
             <div className='flex flex-col md:flex-row gap-5 lg:gap-12'>
                 <div className='w-full'>
                     <PhotoProvider>
                         <PhotoView src={thumbnail}>
                             <img className='w-full rounded-md' src={thumbnail} alt="" />
-
                         </PhotoView>
                     </PhotoProvider>
                     <div className='p-5 text-lg sm:text-2xl font-semibold'>
@@ -38,6 +39,11 @@ const ServiceDetails = () => {
                     </div>
                 </div>
                 <p className='w-full text-justify'>{description}</p>
+            </div>
+
+            {/* ==== Service Reviews ===== */}
+            <div>
+                <ServiceReviews />
             </div>
         </div>
     );
