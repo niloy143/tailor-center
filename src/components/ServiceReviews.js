@@ -51,10 +51,26 @@ const ServiceReviews = ({ serviceId }) => {
             .then(data => {
                 if (data.status) {
                     setSubmitted(true);
+                    const updatedReviews = [data.data, ...reviews];
                     setTimeout(() => {
-                        setReviews([data.data, ...reviews]);
+                        setReviews(updatedReviews);
                         modalClose();
                     }, 2000);
+                    let totalRating = 0;
+                    for (const review of updatedReviews) {
+                        totalRating += review.rating;
+                    }
+                    const updateRating = { averageRating: parseFloat((totalRating / updatedReviews.length).toFixed(1)) };
+                    fetch(`http://localhost:1234/service/modify?serviceId=${serviceId}&userId=${user.uid}`, {
+                        method: 'PUT',
+                        headers: {
+                            'content-type': 'application/json',
+                            authtoken: `Bearer ${localStorage.getItem('tailor-center-user-token')}`
+                        },
+                        body: JSON.stringify(updateRating)
+                    })
+                        .then(res => res.json())
+                        .then(data => { })
                 }
                 else {
                     setSubmitErr(true);
