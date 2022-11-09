@@ -5,7 +5,7 @@ import { TailorContext } from '../Contexts/Contexts';
 import { AiFillLike } from 'react-icons/ai';
 
 const ReviewBox = ({ review }) => {
-    const { user } = useContext(TailorContext);
+    const { user, mlsToDate } = useContext(TailorContext);
     const [fullText, setFullText] = useState(false);
     const { reviewTitle, reviewText, author, rating, date } = review;
     return (
@@ -32,7 +32,7 @@ const ReviewBox = ({ review }) => {
                         <Avatar img={author.photo} rounded />
                         <div>
                             <h4 className='font-semibold text-lg leading-4'>{author.name}</h4>
-                            <small>{date}</small>
+                            <small>{mlsToDate(date)}</small>
                         </div>
                     </div>
                     {

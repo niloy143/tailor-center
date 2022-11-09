@@ -1,7 +1,7 @@
 import { SiAddthis } from 'react-icons/si';
 import { FaCheck } from 'react-icons/fa';
 import { Button, Modal, Rating, Spinner } from 'flowbite-react';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ReviewBox from './ReviewBox';
 import { TailorContext } from '../Contexts/Contexts';
 import { NavLink, useLocation } from 'react-router-dom';
@@ -13,17 +13,16 @@ const ServiceReviews = ({ serviceId }) => {
     const [submitting, setSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [submitErr, setSubmitErr] = useState(false);
-    const review = {
-        reviewTitle: 'Tremendous Work',
-        reviewText: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium exercitationem facere, laudantium dicta neque rem iste commodi ducimus voluptas voluptatem illum reiciendis porro vitae omnis quisquam sit repellendus velit atque enim? Ipsam nihil repudiandae reiciendis, delectus temporibus aperiam minus numquam? Debitis ducimus amet impedit? Architecto assumenda atque mollitia fugit eligendi?',
-        rating: 4,
-        date: '03 August 2013',
-        author: {
-            uid: 'Y3RZCbAnUBSTFLMl2rEg76iB6xr1',
-            name: 'Niloy Mahmud Apu',
-            photo: 'https://media-exp1.licdn.com/dms/image/C4E03AQEtYcgrx4dtDw/profile-displayphoto-shrink_200_200/0/1656954828223?e=1673481600&v=beta&t=l2vwyUCTA29N2CRGN9fwZhjYsN71mDyFbMY-9DvHVwI'
-        }
-    }
+    const [reviews, setReviews] = useState([]);
+
+    useEffect(() => {
+        fetch(`http://localhost:1234/reviews/${serviceId}`)
+            .then(res => res.json())
+            .then(data => {
+                const sortedReviews = data.sort((a, b) => b.date - a.date);
+                setReviews(sortedReviews);
+            })
+    }, [serviceId])
 
     const handleSubmitReview = e => {
         e.preventDefault();
@@ -53,6 +52,7 @@ const ServiceReviews = ({ serviceId }) => {
                 if (data.status) {
                     setSubmitted(true);
                     setTimeout(() => {
+                        setReviews([data.data, ...reviews]);
                         modalClose();
                     }, 2000);
                 }
@@ -141,7 +141,11 @@ const ServiceReviews = ({ serviceId }) => {
                     </p>
                 }
             </div >
-            <ReviewBox review={review} />
+            <div className='flex flex-col gap-5'>
+                {
+                    reviews.map(review => <ReviewBox review={review} key={review._id} />)
+                }
+            </div>
         </div >
     );
 };
