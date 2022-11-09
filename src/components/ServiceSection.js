@@ -28,7 +28,7 @@ const ServiceSection = () => {
                         services.map(service => <ServiceCard service={service} key={service._id} />)
                     }
                 </div>
-                <div className='max-w-5xl mx-auto my-5 flex justify-end'>
+                <div className='max-w-5xl lg:mx-auto my-5 flex justify-end mx-3'>
                     <Button gradientMonochrome="teal" size="lg" onClick={() => navigate('/services')}>Show All Services <FaArrowRight className='ml-2 text-lg' /> </Button>
                 </div>
             </div>
