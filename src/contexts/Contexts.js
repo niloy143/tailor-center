@@ -43,6 +43,30 @@ const Contexts = ({ children }) => {
         photoURL: photo
     })
 
+    // get the current time
+    const mlsToDate = mls => {
+        const months = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'
+        ]
+        const date = new Date(mls);
+        const year = date.getFullYear();
+        const month = date.getMonth();
+        const day = date.getDate();
+
+        return `${day > 10 ? day : '0' + day} ${months[month]}, ${year}`
+    }
+
     // Context API value
     const value = {
         isValidImage,
@@ -52,8 +76,9 @@ const Contexts = ({ children }) => {
         signIn,
         googleSignIn,
         setUserLoading,
-        routeLoader,
         setRouteLoader,
+        mlsToDate,
+        routeLoader,
         userLoading,
         user
     }

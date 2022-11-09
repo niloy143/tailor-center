@@ -8,7 +8,7 @@ import ServiceReviews from './ServiceReviews';
 
 const ServiceDetails = () => {
     const { setRouteLoader } = useContext(TailorContext);
-    const { title, thumbnail, description, rating, price } = useLoaderData();
+    const { _id, title, thumbnail, description, rating, price } = useLoaderData();
     useEffect(() => {
         setRouteLoader(false)
     }, [setRouteLoader])
@@ -43,7 +43,7 @@ const ServiceDetails = () => {
 
             {/* ==== Service Reviews ===== */}
             <div>
-                <ServiceReviews />
+                <ServiceReviews serviceId={_id} />
             </div>
         </div>
     );
