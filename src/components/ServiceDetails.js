@@ -2,6 +2,8 @@ import { Rating } from 'flowbite-react';
 import React, { useContext, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { TailorContext } from '../Contexts/Contexts';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const ServiceDetails = () => {
     const { setRouteLoader } = useContext(TailorContext);
@@ -15,7 +17,12 @@ const ServiceDetails = () => {
 
             <div className='flex flex-col md:flex-row gap-5 lg:gap-12'>
                 <div className='w-full'>
-                    <img className='w-full rounded-md' src={thumbnail} alt="" />
+                    <PhotoProvider>
+                        <PhotoView src={thumbnail}>
+                            <img className='w-full rounded-md' src={thumbnail} alt="" />
+
+                        </PhotoView>
+                    </PhotoProvider>
                     <div className='p-5 text-lg sm:text-2xl font-semibold'>
                         <div className='flex justify-between items-center'>
                             <p>Price:</p>
