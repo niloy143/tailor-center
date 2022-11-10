@@ -19,7 +19,7 @@ const SignIn = () => {
         const { displayName, email, uid } = result.user;
         const user = { displayName, email, uid }
 
-        return fetch(`http://localhost:1234/jwt`, {
+        return fetch(`https://tailor-center-server.vercel.app/jwt`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

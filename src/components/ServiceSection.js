@@ -11,7 +11,7 @@ const ServiceSection = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch("http://localhost:1234/services?count=3")
+        fetch("https://tailor-center-server.vercel.app/services?count=3")
             .then(res => res.json())
             .then(data => {
                 setServices(data.services);

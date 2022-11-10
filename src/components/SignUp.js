@@ -33,7 +33,7 @@ const SignUp = () => {
                         .finally(() => {
                             const { displayName, email, uid } = result.user;
                             const user = { displayName, email, uid }
-                            fetch(`http://localhost:1234/jwt`, {
+                            fetch(`https://tailor-center-server.vercel.app/jwt`, {
                                 method: 'POST',
                                 headers: {
                                     'content-type': 'application/json'

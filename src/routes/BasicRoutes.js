@@ -39,12 +39,12 @@ export const router = createBrowserRouter([
             {
                 path: '/service/:id',
                 element: <ServiceDetails />,
-                loader: async ({ params }) => fetch(`http://localhost:1234/service/${params.id}`)
+                loader: async ({ params }) => fetch(`https://tailor-center-server.vercel.app/service/${params.id}`)
             },
             {
                 path: '/review/edit/:id',
                 element: <PrivateRoute> <EditReview /> </PrivateRoute>,
-                loader: async ({ params }) => fetch(`http://localhost:1234/review/${params.id}`)
+                loader: async ({ params }) => fetch(`https://tailor-center-server.vercel.app/review/${params.id}`)
             },
             {
                 path: '/my-reviews',

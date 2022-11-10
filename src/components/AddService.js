@@ -22,7 +22,7 @@ const AddService = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:1234/user-added-services?userId=${user.uid}`, {
+        fetch(`https://tailor-center-server.vercel.app/user-added-services?userId=${user.uid}`, {
             headers: {
                 authtoken: `Bearer ${localStorage.getItem('tailor-center-user-token')}`
             }
@@ -55,7 +55,7 @@ const AddService = () => {
 
             const service = { title, thumbnail, description, price, userId, rating, date }
 
-            fetch(`http://localhost:1234/service/add?userId=${user.uid}`, {
+            fetch(`https://tailor-center-server.vercel.app/service/add?userId=${user.uid}`, {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json',

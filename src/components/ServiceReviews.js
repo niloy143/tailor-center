@@ -24,7 +24,7 @@ const ServiceReviews = ({ serviceId }) => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:1234/reviews/${serviceId}`)
+        fetch(`https://tailor-center-server.vercel.app/reviews/${serviceId}`)
             .then(res => res.json())
             .then(data => {
                 const sortedReviews = data.sort((a, b) => b.date - a.date);
@@ -49,7 +49,7 @@ const ServiceReviews = ({ serviceId }) => {
 
         const review = { reviewTitle, reviewText, author, rating, date, serviceId, reviewerId };
 
-        fetch(`http://localhost:1234/add-review?userId=${user.uid}`, {
+        fetch(`https://tailor-center-server.vercel.app/add-review?userId=${user.uid}`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -71,7 +71,7 @@ const ServiceReviews = ({ serviceId }) => {
                         totalRating += review.rating;
                     }
                     const updateRating = { averageRating: parseFloat((totalRating / updatedReviews.length).toFixed(1)) };
-                    fetch(`http://localhost:1234/service/modify?serviceId=${serviceId}&userId=${user.uid}`, {
+                    fetch(`https://tailor-center-server.vercel.app/service/modify?serviceId=${serviceId}&userId=${user.uid}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json',
@@ -118,7 +118,7 @@ const ServiceReviews = ({ serviceId }) => {
 
     // handle deleting a review
     const deleteReview = id => {
-        fetch(`http://localhost:1234/review/delete?id=${id}&userId=${user.uid}`, {
+        fetch(`https://tailor-center-server.vercel.app/review/delete?id=${id}&userId=${user.uid}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',
@@ -136,7 +136,7 @@ const ServiceReviews = ({ serviceId }) => {
                         totalRating += review.rating;
                     }
                     const updateRating = { averageRating: parseFloat((totalRating / updatedReviews.length).toFixed(1)) };
-                    fetch(`http://localhost:1234/service/modify?serviceId=${serviceId}&userId=${user.uid}`, {
+                    fetch(`https://tailor-center-server.vercel.app/service/modify?serviceId=${serviceId}&userId=${user.uid}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json',

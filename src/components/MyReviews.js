@@ -1,4 +1,4 @@
-import { Button, Tooltip } from 'flowbite-react';
+import { Button, Spinner, Tooltip } from 'flowbite-react';
 import React, { useContext, useEffect, useState } from 'react';
 import { TailorContext } from '../Contexts/Contexts';
 import BodySpinner from './BodySpinner';
@@ -10,7 +10,7 @@ import MyToast from './MyToast';
 const MyReviews = () => {
     const [myReviews, setMyReviews] = useState([]);
     const [reviewLoading, setReviewLoading] = useState(true);
-    const { user } = useContext(TailorContext);
+    const { user, setRouteLoader, routeLoader } = useContext(TailorContext);
     const [deletionToast, setdeletionToast] = useState(false);
 
     const handleToast = x => {
@@ -18,7 +18,7 @@ const MyReviews = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:1234/my-reviews?user=${user.uid}`, {
+        fetch(`https://tailor-center-server.vercel.app/my-reviews?user=${user.uid}`, {
             headers: {
                 authtoken: `Bearer ${localStorage.getItem('tailor-center-user-token')}`
             }
@@ -32,7 +32,7 @@ const MyReviews = () => {
     }, [user.uid])
 
     const deleteReview = id => {
-        fetch(`http://localhost:1234/review/delete?id=${id}&userId=${user.uid}`, {
+        fetch(`https://tailor-center-server.vercel.app/review/delete?id=${id}&userId=${user.uid}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',
@@ -50,7 +50,7 @@ const MyReviews = () => {
     }
 
     return (
-        reviewLoading ? <BodySpinner /> : !(myReviews.length) ? <div className='h-screen'>
+        reviewLoading ? <div className='h-screen'><BodySpinner /></div> : !(myReviews.length) ? <div className='h-screen'>
             <h2 className='text-2xl sm:text-4xl font-semibold italic text-center my-12 text-gray-400'>No reviews were added!</h2>
         </div> : <div style={{ minHeight: '90vh' }}>
             <h2 className='text-2xl sm:text-4xl font-semibold text-center my-12'>My Reviews</h2>
@@ -61,7 +61,7 @@ const MyReviews = () => {
                         <div className='flex justify-end my-1'>
                             <Tooltip content='The service where this review was added'>
                                 <NavLink to={`/service/${review.serviceId}`}>
-                                    <Button gradientMonochrome="teal">Go to the service <FaArrowRight className='ml-1' /> </Button>
+                                    <Button gradientMonochrome="teal" onClick={() => setRouteLoader(true)}>Go to the service {routeLoader ? <Spinner className='ml-1' size="sm" /> : <FaArrowRight className='ml-1' />} </Button>
                                 </NavLink>
                             </Tooltip>
                         </div>
