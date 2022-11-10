@@ -44,7 +44,7 @@ const ReviewBox = ({ review, deleteReview }) => {
                             inline
                             arrowIcon={false}
                         >
-                            <Dropdown.Item><NavLink to={`/review/edit/${_id}`} state={pathname}>Edit</NavLink></Dropdown.Item>
+                            <NavLink to={`/review/edit/${_id}`} state={pathname}><Dropdown.Item>Edit</Dropdown.Item></NavLink>
                             <Dropdown.Item onClick={() => deleteReview(_id)}>Delete</Dropdown.Item>
                         </Dropdown> : <div>
                             <AiFillLike className='text-xl mr-2 active:scale-125 active:text-blue-600 transition cursor-pointer' />

@@ -64,7 +64,7 @@ const Contexts = ({ children }) => {
         const month = date.getMonth();
         const day = date.getDate();
 
-        return `${day > 10 ? day : '0' + day} ${months[month]}, ${year}`
+        return `${day >= 10 ? day : '0' + day} ${months[month]}, ${year}`
     }
 
     // Context API value

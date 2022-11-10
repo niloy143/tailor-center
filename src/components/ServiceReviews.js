@@ -153,7 +153,7 @@ const ServiceReviews = ({ serviceId }) => {
     return (
         <div className='my-12'>
             <MyToast show={deletionToast} setShow={handleToast}>
-                <p className='text-green-600 px-8 py-5 bg-green-100 text-center'> Review is deleted successfully </p>
+                <p className='text-green-600 px-8 py-5 bg-green-100 text-center'> Review was <span className='text-red-600'>deleted</span> successfully </p>
             </MyToast>
             <h2 className='sm:text-4xl text-3xl font-semibold text-center mb-8'>What clients say about this service</h2>
             <div className='flex justify-end my-5'>

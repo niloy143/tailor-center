@@ -12,8 +12,8 @@ const FooterSection = () => {
                         <h4 className='text-lg font-semibold'>Stay Connected</h4>
                         <div className='flex items-center gap-2 text-xl'>
                             <a href="https://facebook.com/niloymahmudapu1" target="_blank" rel="noopener noreferrer"><BsFacebook className='hover:text-blue-600' /></a>
-                            <a href="https://linkedin.com/in/niloymahmudapu" target="_blank" rel="noopener noreferrer"><BsLinkedin className='hover:text-blue-600' /></a>
-                            <a href="https://github.com/niloy143" target="_blank" rel="noopener noreferrer"><BsGithub className='hover:text-blue-600' /></a>
+                            <a href="https://linkedin.com/in/niloymahmudapu" target="_blank" rel="noopener noreferrer"><BsLinkedin className='hover:text-blue-500' /></a>
+                            <a href="https://github.com/niloy143" target="_blank" rel="noopener noreferrer"><BsGithub className='hover:text-gray-800' /></a>
                         </div>
                     </div>
                 </div>
