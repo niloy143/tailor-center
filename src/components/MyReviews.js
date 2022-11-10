@@ -6,8 +6,10 @@ import ReviewBox from './ReviewBox';
 import { FaArrowRight } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import MyToast from './MyToast';
+import useTitle from '../customHooks/useTitle';
 
 const MyReviews = () => {
+    useTitle('My Reviews');
     const [myReviews, setMyReviews] = useState([]);
     const [reviewLoading, setReviewLoading] = useState(true);
     const { user, setRouteLoader, routeLoader } = useContext(TailorContext);

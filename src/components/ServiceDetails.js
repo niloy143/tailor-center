@@ -5,10 +5,12 @@ import { TailorContext } from '../Contexts/Contexts';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import ServiceReviews from './ServiceReviews';
+import useTitle from '../customHooks/useTitle';
 
 const ServiceDetails = () => {
     const { setRouteLoader } = useContext(TailorContext);
     const { _id, title, thumbnail, description, rating, price } = useLoaderData();
+    useTitle(title.length > 15 ? `${title.slice(0, 15)}...` : title);
     useEffect(() => {
         setRouteLoader(false)
     }, [setRouteLoader])

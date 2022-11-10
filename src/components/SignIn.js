@@ -4,8 +4,10 @@ import { Navigate, NavLink, useLocation } from 'react-router-dom';
 import { TailorContext } from '../Contexts/Contexts';
 import BodySpinner from './BodySpinner';
 import { FcGoogle } from 'react-icons/fc';
+import useTitle from '../customHooks/useTitle';
 
 const SignIn = () => {
+    useTitle('Sign In');
     const { user, userLoading, signIn, googleSignIn, isValidImage, setNameAndPhoto, setUserLoading } = useContext(TailorContext);
     const [loading, setLoading] = useState(false);
     const [loginLoader, setLoginLoader] = useState(false);

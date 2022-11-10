@@ -1,8 +1,10 @@
 import React from 'react';
 import Navigation from './Navigation';
 import FooterSection from './FooterSection';
+import useTitle from '../customHooks/useTitle';
 
 const ErrorPage = () => {
+    useTitle('Page Not Found')
     return (
         <div>
             <Navigation />

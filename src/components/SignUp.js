@@ -2,9 +2,11 @@ import { Spinner } from 'flowbite-react';
 import React, { useContext, useState } from 'react';
 import { Navigate, NavLink, useLocation } from 'react-router-dom';
 import { TailorContext } from '../Contexts/Contexts';
+import useTitle from '../customHooks/useTitle';
 import BodySpinner from './BodySpinner';
 
 const SignUp = () => {
+    useTitle('Create Account');
     const { isValidImage, createUser, setNameAndPhoto, user, userLoading } = useContext(TailorContext);
     const { state } = useLocation();
     const [loading, setLoading] = useState(false);

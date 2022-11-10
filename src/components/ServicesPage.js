@@ -1,9 +1,11 @@
 import { Button, Spinner } from 'flowbite-react';
 import React, { useEffect, useState } from 'react';
+import useTitle from '../customHooks/useTitle';
 import BodySpinner from './BodySpinner';
 import ServiceCard from './ServiceCard';
 
 const ServicesPage = () => {
+    useTitle('Services');
     const [loading, setLoading] = useState(true);
     const [services, setServices] = useState([]);
     const [amount, setAmount] = useState(6);

@@ -5,8 +5,10 @@ import { FaPlus } from 'react-icons/fa';
 import BodySpinner from './BodySpinner';
 import ServiceCard from './ServiceCard';
 import MyToast from './MyToast';
+import useTitle from '../customHooks/useTitle';
 
 const AddService = () => {
+    useTitle('Add Service')
     const [addedServices, setAddedServices] = useState([]);
     const [serviceLoading, setServiceLoading] = useState(true);
     const { user, isValidImage } = useContext(TailorContext);

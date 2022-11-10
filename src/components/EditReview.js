@@ -3,15 +3,17 @@ import React, { useContext, useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import { useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import { TailorContext } from '../Contexts/Contexts';
+import useTitle from '../customHooks/useTitle';
 
 const EditReview = () => {
+    const { _id, reviewTitle, reviewText, rating, author, serviceId, date, reviewerId } = useLoaderData();
+    useTitle(reviewTitle.length > 15 ? `${reviewTitle.slice(0, 15)}...` : reviewTitle)
     const [submitting, setSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [submitErr, setSubmitErr] = useState(false);
     const { state } = useLocation();
     const navigate = useNavigate();
     const { user } = useContext(TailorContext);
-    const { _id, reviewTitle, reviewText, rating, author, serviceId, date, reviewerId } = useLoaderData();
 
     const titleLimitation = e => {
         const text = e.target.value;
