@@ -14,7 +14,7 @@ const ServiceSection = () => {
         fetch("http://localhost:1234/services?count=3")
             .then(res => res.json())
             .then(data => {
-                setServices(data);
+                setServices(data.services);
                 setLoading(false);
             })
     }, [])
