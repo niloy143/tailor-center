@@ -20,7 +20,7 @@ const BenefitSection = () => {
             />
             <Benefit
                 img="https://i.ibb.co/cwnPfgS/img-256126.png"
-                title="Flexible Shipping"
+                title="Gift Cards"
                 des="Sometimes you get special gifts in special days and festivals"
             />
         </div>
