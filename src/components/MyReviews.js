@@ -56,7 +56,7 @@ const MyReviews = () => {
             <h2 className='text-2xl sm:text-4xl font-semibold text-center my-12'>My Reviews</h2>
             <div className='max-w-7xl mx-auto flex flex-col gap-5 my-12'>
                 {
-                    myReviews.map(review => <div>
+                    myReviews.map(review => <div key={review._id}>
                         <ReviewBox review={review} deleteReview={deleteReview} />
                         <div className='flex justify-end my-1'>
                             <Tooltip content='The service where this review was added'>

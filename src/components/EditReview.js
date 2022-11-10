@@ -30,7 +30,7 @@ const EditReview = () => {
 
         const review = { reviewTitle, reviewText, author, rating, date, serviceId, lastUpdate, reviewerId };
 
-        fetch(`http://localhost:1234/review/update?id=${_id}&userId=${user.uid}`, {
+        fetch(`https://tailor-center-server.vercel.app/review/update?id=${_id}&userId=${user.uid}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
