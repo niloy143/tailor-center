@@ -1,5 +1,7 @@
 import React from 'react';
 import useTitle from '../customHooks/useTitle';
+import BenefitSection from './BenefitSection';
+import DiscountSection from './DiscountSection';
 import ServiceSection from './ServiceSection';
 import SliderSection from './SliderSection';
 
@@ -9,6 +11,8 @@ const Home = () => {
         <div>
             <SliderSection />
             <ServiceSection />
+            <DiscountSection />
+            <BenefitSection />
         </div>
     );
 };
