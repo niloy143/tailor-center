@@ -52,7 +52,7 @@ const MyReviews = () => {
     return (
         reviewLoading ? <BodySpinner /> : !(myReviews.length) ? <div className='h-screen flex items-center justify-center'>
             <h2 className='text-2xl sm:text-4xl font-semibold italic text-gray-500'>No reviews were added!</h2>
-        </div> : <div>
+        </div> : <div style={{ minHeight: '90vh' }}>
             <h2 className='text-2xl sm:text-4xl font-semibold text-center my-12'>My Reviews</h2>
             <div className='max-w-7xl mx-auto flex flex-col gap-5 my-12'>
                 {
