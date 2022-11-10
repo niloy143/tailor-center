@@ -6,18 +6,6 @@ import BodySpinner from './BodySpinner';
 import ServiceCard from './ServiceCard';
 import MyToast from './MyToast';
 
-/*
-title
-thumbnail
-description
-service charge
-
-userId
-date
-rating
-price
-*/
-
 const AddService = () => {
     const [addedServices, setAddedServices] = useState([]);
     const [serviceLoading, setServiceLoading] = useState(true);
