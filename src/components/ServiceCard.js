@@ -17,13 +17,13 @@ const ServiceCard = ({ service }) => {
     }
 
     return (
-        <div className='max-w-5xl p-5 shadow-md border rounded-md bg-slate-100 flex flex-col sm:flex-row items-center gap-5 m-3'>
+        <div className='p-5 shadow-md border rounded-md bg-slate-100 flex flex-col sm:flex-row sm:items-center gap-5 m-3'>
             <PhotoProvider>
                 <PhotoView src={thumbnail}>
-                    <img className='w-72 h-72 mx-auto my-3 rounded-md cursor-pointer' src={thumbnail} alt="" />
+                    <img className='w-72 h-72 my-3 rounded-md cursor-pointer' src={thumbnail} alt="" />
                 </PhotoView>
             </PhotoProvider>
-            <div className='pr-5'>
+            <div className='sm:pr-5 w-full sm:grow'>
                 <h2 className='text-2xl font-semibold mb-3'>{title}</h2>
                 <p className='mb-3'>{description.length > 100 ? `${description.slice(0, 100)}...` : description}</p>
                 <div className='flex items-center justify-between text-2xl font-semibold'>
