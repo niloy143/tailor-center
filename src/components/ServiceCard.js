@@ -20,10 +20,10 @@ const ServiceCard = ({ service }) => {
         <div className='p-5 shadow-md border rounded-md bg-slate-100 flex flex-col sm:flex-row sm:items-center gap-5 m-3'>
             <PhotoProvider>
                 <PhotoView src={thumbnail}>
-                    <img className='w-72 h-72 my-3 rounded-md cursor-pointer' src={thumbnail} alt="" />
+                    <img className='block w-full sm:w-72 h-72 my-3 rounded-md cursor-pointer' src={thumbnail} alt="" />
                 </PhotoView>
             </PhotoProvider>
-            <div className='sm:pr-5 w-full sm:grow'>
+            <div className='sm:pr-5 grow'>
                 <h2 className='text-2xl font-semibold mb-3'>{title}</h2>
                 <p className='mb-3'>{description.length > 100 ? `${description.slice(0, 100)}...` : description}</p>
                 <div className='flex items-center justify-between text-2xl font-semibold'>

@@ -32,6 +32,15 @@ const Navigation = () => {
                                 inline
                                 arrowIcon={false}
                             >
+                                <Dropdown.Header>
+                                    <div className='p-2'>
+                                        <Avatar img={user.photoURL} size="lg" rounded />
+                                        <div className='text-center'>
+                                            <h4 className='text-lg font-semibold pt-2 -mb-1'>{user.displayName}</h4>
+                                            <small>{user.email}</small>
+                                        </div>
+                                    </div>
+                                </Dropdown.Header>
                                 <Dropdown.Item onClick={() => logOut()}>Sign Out</Dropdown.Item>
                             </Dropdown> :
                                 <NavLink to="/signin" className={({ isActive }) => `bg-orange-500 text-white ${isActive ? 'bg-orange-600 italic' : 'hover:bg-orange-600'} px-4 py-2 rounded`}>Sign-In</NavLink>

@@ -1,4 +1,4 @@
-import { Spinner } from 'flowbite-react';
+import { Avatar, Spinner } from 'flowbite-react';
 import React, { useContext, useState } from 'react';
 import { Navigate, NavLink, useLocation } from 'react-router-dom';
 import { TailorContext } from '../Contexts/Contexts';
@@ -14,6 +14,7 @@ const SignUp = () => {
     const [passErr, setPassErr] = useState(false);
     const [passMatchErr, setPassMatchErr] = useState(false);
     const [emailErr, setEmailErr] = useState(false);
+    const [img, setImg] = useState(null);
 
     const handleSignUp = e => {
         e.preventDefault();
@@ -62,7 +63,10 @@ const SignUp = () => {
         if (url !== '') {
             setImgErr(true)
             isValidImage(url)
-                .then(res => setImgErr(!res))
+                .then(res => {
+                    setImgErr(!res);
+                    setImg(url);
+                })
                 .catch(err => console.error(err.code))
         }
         else {
@@ -74,6 +78,7 @@ const SignUp = () => {
         userLoading ? <BodySpinner /> : user && !loading ? <Navigate to={state || '/'} /> :
             <div className='flex justify-center'>
                 <div className='p-5 shadow-md border rounded-md w-11/12 sm:w-2/3 lg:w-1/2 2xl:w-1/3 my-12' style={{ minWidth: '250px', maxWidth: '800px' }}>
+                    <Avatar size="xl" img={!imgErr ? img : null} />
                     <h2 className='text-3xl text-slate-700 font-semibold text-center my-5'>Create Account</h2>
                     <form className='flex flex-col gap-3 px-3' onSubmit={handleSignUp}>
                         <input className='border-gray-400 border-t-0 border-r-0 border-l-4 focus:ring-0 shadow' type="text" name="name" placeholder='Your full name' required />
